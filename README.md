@@ -15,7 +15,7 @@ To set up this project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/Mukulraj109/Desktop-App.git
 
 2. Open the project in Visual Studio:
 
@@ -45,6 +45,11 @@ Press F5 or select Debug > Start Debugging.
 ### Delete Submissions
 1. View the submission you want to delete.
 2. Click the Delete button to remove the submission from the list.
+
+### Update Submissions
+1. View the submission you want to edit.
+2. Click the Edit button or press Ctrl+E to open the Edit form.
+3. Make necessary changes and click Save.
 
 ## Keyboard Shortcuts
 - Ctrl+N: Open the Create Submissions form.
