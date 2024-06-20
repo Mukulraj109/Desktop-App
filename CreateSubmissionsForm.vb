@@ -1,14 +1,17 @@
-﻿Imports System.Drawing.Text
+﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
+Imports System.Drawing.Text
 Imports System.Net.Http
 Imports System.Text
 Imports System.Threading.Tasks
+Imports System.Windows.Forms
 
 Public Class CreateSubmissionsForm
 
     Private stopwatch As New Stopwatch()
     Private customFont As Font
 
-    Private Sub CreateSubmissionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub CreateSubmissionsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Initialize timer in Load event
         timer1 = New Timer()
         AddHandler timer1.Tick, AddressOf Timer1_Tick
@@ -36,8 +39,6 @@ Public Class CreateSubmissionsForm
                 lblEmail.Font = customFont
                 lblPhoneNumber.Font = customFont
                 lblGitHubLink.Font = customFont
-                lblGitHubLink1.Font = customFont
-
 
                 ' Apply custom font to all Button controls
                 btnStartStop.Font = customFont
@@ -76,9 +77,9 @@ Public Class CreateSubmissionsForm
             txtGitHubLink.Text,
             stopwatch.Elapsed
         )
+
         ' Prepare JSON payload
         Dim jsonPayload As String = $"{{ ""name"": ""{submission.Name}"", ""email"": ""{submission.Email}"", ""phone"": ""{submission.Phone}"", ""github_link"": ""{submission.GitHub_Link}"", ""stopwatch_time"": ""{stopwatch.Elapsed.ToString("hh\:mm\:ss")}"", ""createdAt"": ""{DateTime.Now.ToString("yyyy-MM-ddTHH\:mm\:ssZ")}"", ""updatedAt"": ""{DateTime.Now.ToString("yyyy-MM-ddTHH\:mm\:ssZ")}"", ""deletedAt"": ""null"" }}"
-
 
         ' Send HTTP POST request to backend
         Dim response As HttpResponseMessage = Nothing
@@ -108,6 +109,17 @@ Public Class CreateSubmissionsForm
         ResetForm()
     End Sub
 
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        ' Create a gradient brush for the form background
+        Using brush As New LinearGradientBrush(Me.ClientRectangle, Color.LightBlue, Color.White, LinearGradientMode.Vertical)
+            ' Paint the form background with the gradient brush
+            e.Graphics.FillRectangle(brush, Me.ClientRectangle)
+        End Using
+
+        ' Call base implementation
+        MyBase.OnPaint(e)
+    End Sub
+
     Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
         ' Handle Ctrl+S for submitting the form
         If keyData = (Keys.Control Or Keys.S) Then
@@ -133,7 +145,4 @@ Public Class CreateSubmissionsForm
         lblTimer.Text = "00:00:00"
     End Sub
 
-    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles lblPhoneNumber.Click
-
-    End Sub
 End Class

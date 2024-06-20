@@ -1,7 +1,9 @@
 ﻿Imports Newtonsoft.Json
-Imports System.Net.Http
 Imports System.Drawing
+Imports System.Drawing.Drawing2D
 Imports System.Drawing.Text
+Imports System.Net.Http
+Imports System.Windows.Forms
 
 Public Class ViewSubmissionsForm
     Private currentSubmissionIndex As Integer = 0
@@ -19,7 +21,7 @@ Public Class ViewSubmissionsForm
         Try
             pfc.AddFontFile("C:\Users\Mukul raj\source\repos\windowapp\font\font.ttf") ' Adjust path as necessary
             If pfc.Families.Length > 0 Then
-                Dim customFont As New Font(pfc.Families(0), 12, FontStyle.Regular) ' Use FontStyle.Regular to ensure no bold
+                customFont = New Font(pfc.Families(0), 12, FontStyle.Regular) ' Use FontStyle.Regular to ensure no bold
 
                 ' Apply custom font to all TextBox controls
                 txtName.Font = customFont
@@ -75,7 +77,6 @@ Public Class ViewSubmissionsForm
 
         Return 0
     End Function
-
 
     Private Sub LoadSubmission(index As Integer)
         Dim apiUrl As String = $"http://localhost:3000/read?index={index}" ' Replace with your actual endpoint
@@ -240,4 +241,16 @@ Public Class ViewSubmissionsForm
 
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
+
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        ' Create a gradient brush for the form background
+        Using brush As New LinearGradientBrush(Me.ClientRectangle, Color.LightBlue, Color.White, LinearGradientMode.Vertical)
+            ' Paint the form background with the gradient brush
+            e.Graphics.FillRectangle(brush, Me.ClientRectangle)
+        End Using
+
+        ' Call base implementation
+        MyBase.OnPaint(e)
+    End Sub
+
 End Class

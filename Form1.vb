@@ -1,19 +1,17 @@
 ﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
 Imports System.Drawing.Text
+Imports System.Windows.Forms
 
 Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Keyboard shortcuts
+        ' Apply custom font and other initializations
         ApplyCustomFont()
 
+        ' Set button texts
         btnViewSubmissions.Text = "&View Submissions"
         btnCreateSubmissions.Text = "&Create Submissions"
-    End Sub
-
-    Private Sub btnViewSubmission_Click(sender As Object, e As EventArgs) Handles btnViewSubmissions.Click
-        Dim viewForm As New viewSubmissionsForm()
-        viewForm.ShowDialog()
     End Sub
 
     Private Sub ApplyCustomFont()
@@ -34,6 +32,22 @@ Public Class Form1
         Catch ex As Exception
             MessageBox.Show($"Error loading custom font: {ex.Message}")
         End Try
+    End Sub
+
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        ' Create a gradient brush for the form background
+        Using brush As New LinearGradientBrush(Me.ClientRectangle, Color.LightBlue, Color.White, LinearGradientMode.Vertical)
+            ' Paint the form background with the gradient brush
+            e.Graphics.FillRectangle(brush, Me.ClientRectangle)
+        End Using
+
+        ' Call base implementation
+        MyBase.OnPaint(e)
+    End Sub
+
+    Private Sub btnViewSubmission_Click(sender As Object, e As EventArgs) Handles btnViewSubmissions.Click
+        Dim viewForm As New viewSubmissionsForm()
+        viewForm.ShowDialog()
     End Sub
 
     Private Sub btnCreateSubmission_Click(sender As Object, e As EventArgs) Handles btnCreateSubmissions.Click
