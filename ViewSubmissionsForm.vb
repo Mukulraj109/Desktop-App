@@ -55,11 +55,11 @@ Public Class ViewSubmissionsForm
 
     Private Async Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         If MessageBox.Show("Are you sure you want to delete this submission?", "Confirm Deletion", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            Dim apiUrl As String = $"http://localhost:3000/delete?index={currentSubmissionIndex}" ' Replace with your actual endpoint
+            Dim apiUrl = $"http://localhost:3000/delete?index={currentSubmissionIndex}" ' Replace with your actual endpoint
 
             Try
-                Using client As New HttpClient()
-                    Dim response As HttpResponseMessage = Await client.DeleteAsync(apiUrl)
+                Using client As New HttpClient
+                    Dim response = Await client.DeleteAsync(apiUrl)
 
                     If response.IsSuccessStatusCode Then
                         MessageBox.Show("Submission deleted successfully!")
@@ -76,6 +76,38 @@ Public Class ViewSubmissionsForm
                 MessageBox.Show($"Error: {ex.Message}")
             End Try
         End If
+    End Sub
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        Try
+            ' Fetch current submission based on currentSubmissionIndex
+            Dim apiUrl As String = $"http://localhost:3000/read?index={currentSubmissionIndex}" ' Replace with actual endpoint
+
+            Using client As New HttpClient()
+                Dim response As HttpResponseMessage = client.GetAsync(apiUrl).Result
+
+                If response.IsSuccessStatusCode Then
+                    Dim json As String = response.Content.ReadAsStringAsync().Result
+                    Dim submission As SubmissionEntry = JsonConvert.DeserializeObject(Of SubmissionEntry)(json)
+
+                    ' Open edit form for current submission
+                    Dim editForm As New EditSubmissionForm(submission, currentSubmissionIndex)
+                    If editForm.ShowDialog() = DialogResult.OK Then
+                        ' Reload submission after editing if it was updated
+                        LoadSubmission(currentSubmissionIndex)
+                    End If
+                Else
+                    MessageBox.Show($"Failed to fetch submission details for editing. Status code: {response.StatusCode}")
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show($"Error: {ex.Message}")
+        End Try
+    End Sub
+
+
+    Private Sub EnableEditDeleteButtons()
+        btnEdit.Enabled = True
+        btnDelete.Enabled = True
     End Sub
 
     Private Sub ViewSubmissionsForm_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown

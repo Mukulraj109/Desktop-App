@@ -40,6 +40,7 @@ Partial Class viewSubmissionsForm
         Label8 = New Label()
         PictureBox1 = New PictureBox()
         btnDelete = New Button()
+        btnEdit = New Button()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -94,7 +95,7 @@ Partial Class viewSubmissionsForm
         btnPrevious.BackColor = Color.Khaki
         btnPrevious.Location = New Point(30, 636)
         btnPrevious.Name = "btnPrevious"
-        btnPrevious.Size = New Size(324, 52)
+        btnPrevious.Size = New Size(234, 52)
         btnPrevious.TabIndex = 5
         btnPrevious.Text = "&Previous (CTRL + P)"
         btnPrevious.UseVisualStyleBackColor = False
@@ -102,9 +103,9 @@ Partial Class viewSubmissionsForm
         ' btnNext
         ' 
         btnNext.BackColor = Color.SkyBlue
-        btnNext.Location = New Point(448, 636)
+        btnNext.Location = New Point(345, 643)
         btnNext.Name = "btnNext"
-        btnNext.Size = New Size(343, 52)
+        btnNext.Size = New Size(260, 38)
         btnNext.TabIndex = 6
         btnNext.Text = "&Next (CTRL + N)"
         btnNext.UseVisualStyleBackColor = False
@@ -204,18 +205,29 @@ Partial Class viewSubmissionsForm
         ' btnDelete
         ' 
         btnDelete.BackColor = Color.LightCoral
-        btnDelete.Location = New Point(858, 636)
+        btnDelete.Location = New Point(644, 636)
         btnDelete.Name = "btnDelete"
-        btnDelete.Size = New Size(343, 52)
+        btnDelete.Size = New Size(271, 45)
         btnDelete.TabIndex = 16
         btnDelete.Text = "Delete(CTRL+D)"
         btnDelete.UseVisualStyleBackColor = False
+        ' 
+        ' btnEdit
+        ' 
+        btnEdit.BackColor = Color.DarkOrange
+        btnEdit.Location = New Point(946, 636)
+        btnEdit.Name = "btnEdit"
+        btnEdit.Size = New Size(271, 45)
+        btnEdit.TabIndex = 17
+        btnEdit.Text = "Update(CTRL+U)"
+        btnEdit.UseVisualStyleBackColor = False
         ' 
         ' viewSubmissionsForm
         ' 
         AutoScaleDimensions = New SizeF(11F, 28F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1229, 722)
+        Controls.Add(btnEdit)
         Controls.Add(btnDelete)
         Controls.Add(PictureBox1)
         Controls.Add(Label8)
@@ -260,4 +272,5 @@ Partial Class viewSubmissionsForm
     Friend WithEvents Label8 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents btnDelete As Button
+    Friend WithEvents btnEdit As Button
 End Class
