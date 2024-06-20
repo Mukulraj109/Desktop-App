@@ -39,6 +39,7 @@ Partial Class viewSubmissionsForm
         txtElapsedTime = New TextBox()
         Label8 = New Label()
         PictureBox1 = New PictureBox()
+        btnDelete = New Button()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -91,7 +92,7 @@ Partial Class viewSubmissionsForm
         ' btnPrevious
         ' 
         btnPrevious.BackColor = Color.Khaki
-        btnPrevious.Location = New Point(205, 636)
+        btnPrevious.Location = New Point(30, 636)
         btnPrevious.Name = "btnPrevious"
         btnPrevious.Size = New Size(324, 52)
         btnPrevious.TabIndex = 5
@@ -101,7 +102,7 @@ Partial Class viewSubmissionsForm
         ' btnNext
         ' 
         btnNext.BackColor = Color.SkyBlue
-        btnNext.Location = New Point(697, 636)
+        btnNext.Location = New Point(448, 636)
         btnNext.Name = "btnNext"
         btnNext.Size = New Size(343, 52)
         btnNext.TabIndex = 6
@@ -200,11 +201,22 @@ Partial Class viewSubmissionsForm
         PictureBox1.TabIndex = 15
         PictureBox1.TabStop = False
         ' 
+        ' btnDelete
+        ' 
+        btnDelete.BackColor = Color.LightCoral
+        btnDelete.Location = New Point(858, 636)
+        btnDelete.Name = "btnDelete"
+        btnDelete.Size = New Size(343, 52)
+        btnDelete.TabIndex = 16
+        btnDelete.Text = "Delete(CTRL+D)"
+        btnDelete.UseVisualStyleBackColor = False
+        ' 
         ' viewSubmissionsForm
         ' 
         AutoScaleDimensions = New SizeF(11F, 28F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1229, 722)
+        Controls.Add(btnDelete)
         Controls.Add(PictureBox1)
         Controls.Add(Label8)
         Controls.Add(txtElapsedTime)
@@ -247,4 +259,5 @@ Partial Class viewSubmissionsForm
     Friend WithEvents txtElapsedTime As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents btnDelete As Button
 End Class

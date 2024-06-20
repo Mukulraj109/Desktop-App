@@ -53,8 +53,35 @@ Public Class ViewSubmissionsForm
         LoadSubmission(currentSubmissionIndex)
     End Sub
 
+    Private Async Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        If MessageBox.Show("Are you sure you want to delete this submission?", "Confirm Deletion", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            Dim apiUrl As String = $"http://localhost:3000/delete?index={currentSubmissionIndex}" ' Replace with your actual endpoint
+
+            Try
+                Using client As New HttpClient()
+                    Dim response As HttpResponseMessage = Await client.DeleteAsync(apiUrl)
+
+                    If response.IsSuccessStatusCode Then
+                        MessageBox.Show("Submission deleted successfully!")
+                        ' Adjust the current index and reload submission
+                        If currentSubmissionIndex > 0 Then
+                            currentSubmissionIndex -= 1
+                        End If
+                        LoadSubmission(currentSubmissionIndex)
+                    Else
+                        MessageBox.Show($"Failed to delete submission. Status code: {response.StatusCode}")
+                    End If
+                End Using
+            Catch ex As Exception
+                MessageBox.Show($"Error: {ex.Message}")
+            End Try
+        End If
+    End Sub
+
     Private Sub ViewSubmissionsForm_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-        If e.Control AndAlso e.KeyCode = Keys.P Then
+        If e.Control AndAlso e.KeyCode = Keys.D Then
+            btnDelete.PerformClick()
+        ElseIf e.Control AndAlso e.KeyCode = Keys.P Then
             btnPrevious.PerformClick()
         ElseIf e.Control AndAlso e.KeyCode = Keys.N Then
             btnNext.PerformClick()
@@ -76,6 +103,9 @@ Public Class ViewSubmissionsForm
             Return True
         ElseIf keyData = (Keys.Control Or Keys.N) Then
             btnNext.PerformClick()
+            Return True
+        ElseIf keyData = (Keys.Control Or Keys.D) Then
+            btnDelete.PerformClick()
             Return True
         End If
 
