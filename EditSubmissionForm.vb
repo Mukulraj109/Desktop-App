@@ -1,11 +1,17 @@
 ﻿Imports Newtonsoft.Json
 Imports System.Net.Http
+Imports System.Drawing
+Imports System.Drawing.Text
+
+
 
 Public Class EditSubmissionForm
 
     Private submission As SubmissionEntry ' Assuming SubmissionEntry is your data model
     Private currentSubmissionIndex As Integer
-
+    Private Sub EditSubmissionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ApplyStyles()
+    End Sub
     Public Sub New(ByVal submission As SubmissionEntry, ByVal index As Integer)
         InitializeComponent()
 
@@ -21,6 +27,52 @@ Public Class EditSubmissionForm
         txtPhoneNumber.Text = submission.Phone
         txtGitHubLink.Text = submission.GitHub_Link
     End Sub
+
+    Private Sub ApplyStyles()
+        ' Custom font
+        Dim pfc As New PrivateFontCollection()
+        Try
+            pfc.AddFontFile("C:\Users\Mukul raj\source\repos\windowapp\font\font.ttf") ' Adjust path as necessary
+            If pfc.Families.Length > 0 Then
+                Dim customFont As New Font(pfc.Families(0), 12)
+
+                ' Apply custom font to controls
+                txtName.Font = customFont
+                txtEmail.Font = customFont
+                txtPhoneNumber.Font = customFont
+                txtGitHubLink.Font = customFont
+                btnUpdate.Font = customFont
+                btnCancel.Font = customFont
+                lblEmail.Font = customFont
+                lblName.Font = customFont
+                lblGitHubLink.Font = customFont
+                lblPhoneNumber.Font = customFont
+
+                ' Custom colors
+                Dim customBackColor As Color = Color.FromArgb(255, 255, 192) ' Light yellow
+                Dim customForeColor As Color = Color.FromArgb(0, 0, 128) ' Dark blue
+
+                ' Apply custom colors
+                txtName.BackColor = customBackColor
+                txtEmail.BackColor = customBackColor
+                txtPhoneNumber.BackColor = customBackColor
+                txtGitHubLink.BackColor = customBackColor
+
+                txtName.ForeColor = customForeColor
+                txtEmail.ForeColor = customForeColor
+                txtPhoneNumber.ForeColor = customForeColor
+                txtGitHubLink.ForeColor = customForeColor
+
+                ' Set form background color
+                Me.BackColor = Color.LightBlue
+            Else
+                MessageBox.Show("Failed to load custom font.")
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"Error loading custom font: {ex.Message}")
+        End Try
+    End Sub
+
 
     Private Async Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         ' Validate user input
@@ -80,4 +132,6 @@ Public Class EditSubmissionForm
         ' Additional validation logic can be added here
         Return True
     End Function
+
+
 End Class

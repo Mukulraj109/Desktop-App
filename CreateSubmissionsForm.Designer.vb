@@ -24,12 +24,12 @@ Partial Class createSubmissionsForm
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(createSubmissionsForm))
-        Label1 = New Label()
+        lblTitle = New Label()
         Label2 = New Label()
-        Label4 = New Label()
-        Label5 = New Label()
-        Label6 = New Label()
-        Label7 = New Label()
+        lblEmail = New Label()
+        lblPhoneNumber = New Label()
+        lblGitHubLink = New Label()
+        lblGitHubLink1 = New Label()
         txtName = New TextBox()
         txtEmail = New TextBox()
         txtPhoneNumber = New TextBox()
@@ -39,19 +39,19 @@ Partial Class createSubmissionsForm
         PictureBox1 = New PictureBox()
         lblTimer = New TextBox()
         timer1 = New Timer(components)
-        Nam = New Label()
+        lblName = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' Label1
+        ' lblTitle
         ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(311, 55)
-        Label1.Margin = New Padding(4, 0, 4, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(342, 23)
-        Label1.TabIndex = 0
-        Label1.Text = "Mukul Raj,Slidely Task 2-Create Submissions"
+        lblTitle.AutoSize = True
+        lblTitle.Location = New Point(311, 55)
+        lblTitle.Margin = New Padding(4, 0, 4, 0)
+        lblTitle.Name = "lblTitle"
+        lblTitle.Size = New Size(342, 23)
+        lblTitle.TabIndex = 0
+        lblTitle.Text = "Mukul Raj,Slidely Task 2-Create Submissions"
         ' 
         ' Label2
         ' 
@@ -62,45 +62,45 @@ Partial Class createSubmissionsForm
         Label2.Size = New Size(0, 23)
         Label2.TabIndex = 1
         ' 
-        ' Label4
+        ' lblEmail
         ' 
-        Label4.AutoSize = True
-        Label4.Location = New Point(264, 241)
-        Label4.Margin = New Padding(4, 0, 4, 0)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(51, 23)
-        Label4.TabIndex = 3
-        Label4.Text = "Email"
+        lblEmail.AutoSize = True
+        lblEmail.Location = New Point(264, 241)
+        lblEmail.Margin = New Padding(4, 0, 4, 0)
+        lblEmail.Name = "lblEmail"
+        lblEmail.Size = New Size(51, 23)
+        lblEmail.TabIndex = 3
+        lblEmail.Text = "Email"
         ' 
-        ' Label5
+        ' lblPhoneNumber
         ' 
-        Label5.AutoSize = True
-        Label5.Location = New Point(242, 323)
-        Label5.Margin = New Padding(4, 0, 4, 0)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(102, 23)
-        Label5.TabIndex = 4
-        Label5.Text = "Phone Num"
+        lblPhoneNumber.AutoSize = True
+        lblPhoneNumber.Location = New Point(242, 323)
+        lblPhoneNumber.Margin = New Padding(4, 0, 4, 0)
+        lblPhoneNumber.Name = "lblPhoneNumber"
+        lblPhoneNumber.Size = New Size(102, 23)
+        lblPhoneNumber.TabIndex = 4
+        lblPhoneNumber.Text = "Phone Num"
         ' 
-        ' Label6
+        ' lblGitHubLink
         ' 
-        Label6.AutoSize = True
-        Label6.Location = New Point(242, 394)
-        Label6.Margin = New Padding(4, 0, 4, 0)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(102, 23)
-        Label6.TabIndex = 5
-        Label6.Text = "Github Link "
+        lblGitHubLink.AutoSize = True
+        lblGitHubLink.Location = New Point(242, 394)
+        lblGitHubLink.Margin = New Padding(4, 0, 4, 0)
+        lblGitHubLink.Name = "lblGitHubLink"
+        lblGitHubLink.Size = New Size(102, 23)
+        lblGitHubLink.TabIndex = 5
+        lblGitHubLink.Text = "Github Link "
         ' 
-        ' Label7
+        ' lblGitHubLink1
         ' 
-        Label7.AutoSize = True
-        Label7.Location = New Point(251, 417)
-        Label7.Margin = New Padding(4, 0, 4, 0)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(84, 23)
-        Label7.TabIndex = 6
-        Label7.Text = "For Task 2"
+        lblGitHubLink1.AutoSize = True
+        lblGitHubLink1.Location = New Point(251, 417)
+        lblGitHubLink1.Margin = New Padding(4, 0, 4, 0)
+        lblGitHubLink1.Name = "lblGitHubLink1"
+        lblGitHubLink1.Size = New Size(84, 23)
+        lblGitHubLink1.TabIndex = 6
+        lblGitHubLink1.Text = "For Task 2"
         ' 
         ' txtName
         ' 
@@ -133,9 +133,9 @@ Partial Class createSubmissionsForm
         ' btnStartStop
         ' 
         btnStartStop.BackColor = Color.Khaki
-        btnStartStop.Location = New Point(251, 498)
+        btnStartStop.Location = New Point(201, 498)
         btnStartStop.Name = "btnStartStop"
-        btnStartStop.Size = New Size(259, 30)
+        btnStartStop.Size = New Size(278, 66)
         btnStartStop.TabIndex = 11
         btnStartStop.Text = "&Toggle Stopwatch(CTRL+T)"
         btnStartStop.UseVisualStyleBackColor = False
@@ -143,9 +143,9 @@ Partial Class createSubmissionsForm
         ' btnSubmit
         ' 
         btnSubmit.BackColor = Color.SkyBlue
-        btnSubmit.Location = New Point(251, 561)
+        btnSubmit.Location = New Point(176, 586)
         btnSubmit.Name = "btnSubmit"
-        btnSubmit.Size = New Size(581, 47)
+        btnSubmit.Size = New Size(539, 47)
         btnSubmit.TabIndex = 13
         btnSubmit.Text = "&Submit (CTRL+S)"
         btnSubmit.UseVisualStyleBackColor = False
@@ -153,7 +153,7 @@ Partial Class createSubmissionsForm
         ' PictureBox1
         ' 
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(997, 0)
+        PictureBox1.Location = New Point(1007, -2)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(72, 62)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
@@ -163,26 +163,26 @@ Partial Class createSubmissionsForm
         ' lblTimer
         ' 
         lblTimer.BackColor = Color.DarkGray
-        lblTimer.Location = New Point(567, 498)
+        lblTimer.Location = New Point(541, 498)
         lblTimer.Name = "lblTimer"
-        lblTimer.Size = New Size(265, 30)
+        lblTimer.Size = New Size(147, 30)
         lblTimer.TabIndex = 15
         ' 
-        ' Nam
+        ' lblName
         ' 
-        Nam.AutoSize = True
-        Nam.Location = New Point(274, 162)
-        Nam.Name = "Nam"
-        Nam.Size = New Size(56, 23)
-        Nam.TabIndex = 16
-        Nam.Text = "Name"
+        lblName.AutoSize = True
+        lblName.Location = New Point(274, 162)
+        lblName.Name = "lblName"
+        lblName.Size = New Size(56, 23)
+        lblName.TabIndex = 16
+        lblName.Text = "Name"
         ' 
         ' createSubmissionsForm
         ' 
         AutoScaleDimensions = New SizeF(9F, 23F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1145, 665)
-        Controls.Add(Nam)
+        ClientSize = New Size(1077, 660)
+        Controls.Add(lblName)
         Controls.Add(lblTimer)
         Controls.Add(PictureBox1)
         Controls.Add(btnSubmit)
@@ -191,12 +191,12 @@ Partial Class createSubmissionsForm
         Controls.Add(txtPhoneNumber)
         Controls.Add(txtEmail)
         Controls.Add(txtName)
-        Controls.Add(Label7)
-        Controls.Add(Label6)
-        Controls.Add(Label5)
-        Controls.Add(Label4)
+        Controls.Add(lblGitHubLink1)
+        Controls.Add(lblGitHubLink)
+        Controls.Add(lblPhoneNumber)
+        Controls.Add(lblEmail)
         Controls.Add(Label2)
-        Controls.Add(Label1)
+        Controls.Add(lblTitle)
         Font = New Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         FormBorderStyle = FormBorderStyle.None
         Margin = New Padding(4)
@@ -207,13 +207,13 @@ Partial Class createSubmissionsForm
         PerformLayout()
     End Sub
 
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblTitle As Label
     Friend WithEvents Label2 As Label
 
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label7 As Label
+    Friend WithEvents lblEmail As Label
+    Friend WithEvents lblPhoneNumber As Label
+    Friend WithEvents lblGitHubLink As Label
+    Friend WithEvents lblGitHubLink1 As Label
     Friend WithEvents txtName As TextBox
     Friend WithEvents txtEmail As TextBox
     Friend WithEvents txtPhoneNumber As TextBox
@@ -223,6 +223,6 @@ Partial Class createSubmissionsForm
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblTimer As TextBox
     Friend WithEvents timer1 As Timer
-    Friend WithEvents Nam As Label
+    Friend WithEvents lblName As Label
 
 End Class

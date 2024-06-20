@@ -23,45 +23,45 @@ Partial Class viewSubmissionsForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(viewSubmissionsForm))
-        Label1 = New Label()
-        Label2 = New Label()
+        lblTitle = New Label()
+        lblName = New Label()
         lblEmail = New Label()
         lblPhoneNumber = New Label()
         lblGitHubLink = New Label()
         btnPrevious = New Button()
         btnNext = New Button()
-        Label6 = New Label()
+        lblGitHubLink1 = New Label()
         txtName = New TextBox()
         txtEmail = New TextBox()
         txtPhoneNumber = New TextBox()
         txtGithubLink = New TextBox()
         lblElapsedTime = New Label()
         txtElapsedTime = New TextBox()
-        Label8 = New Label()
+        lblElapsedTime1 = New Label()
         PictureBox1 = New PictureBox()
         btnDelete = New Button()
         btnEdit = New Button()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' Label1
+        ' lblTitle
         ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(401, 63)
-        Label1.Margin = New Padding(4, 0, 4, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(390, 28)
-        Label1.TabIndex = 0
-        Label1.Text = "Mukul raj, Slidely Task 2 - View Submissions"
+        lblTitle.AutoSize = True
+        lblTitle.Location = New Point(401, 63)
+        lblTitle.Margin = New Padding(4, 0, 4, 0)
+        lblTitle.Name = "lblTitle"
+        lblTitle.Size = New Size(390, 28)
+        lblTitle.TabIndex = 0
+        lblTitle.Text = "Mukul raj, Slidely Task 2 - View Submissions"
         ' 
-        ' Label2
+        ' lblName
         ' 
-        Label2.AutoSize = True
-        Label2.Location = New Point(205, 156)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(64, 28)
-        Label2.TabIndex = 1
-        Label2.Text = "Name"
+        lblName.AutoSize = True
+        lblName.Location = New Point(205, 156)
+        lblName.Name = "lblName"
+        lblName.Size = New Size(64, 28)
+        lblName.TabIndex = 1
+        lblName.Text = "Name"
         ' 
         ' lblEmail
         ' 
@@ -93,9 +93,9 @@ Partial Class viewSubmissionsForm
         ' btnPrevious
         ' 
         btnPrevious.BackColor = Color.Khaki
-        btnPrevious.Location = New Point(30, 636)
+        btnPrevious.Location = New Point(30, 643)
         btnPrevious.Name = "btnPrevious"
-        btnPrevious.Size = New Size(234, 52)
+        btnPrevious.Size = New Size(222, 38)
         btnPrevious.TabIndex = 5
         btnPrevious.Text = "&Previous (CTRL + P)"
         btnPrevious.UseVisualStyleBackColor = False
@@ -103,21 +103,21 @@ Partial Class viewSubmissionsForm
         ' btnNext
         ' 
         btnNext.BackColor = Color.SkyBlue
-        btnNext.Location = New Point(345, 643)
+        btnNext.Location = New Point(337, 643)
         btnNext.Name = "btnNext"
-        btnNext.Size = New Size(260, 38)
+        btnNext.Size = New Size(268, 38)
         btnNext.TabIndex = 6
         btnNext.Text = "&Next (CTRL + N)"
         btnNext.UseVisualStyleBackColor = False
         ' 
-        ' Label6
+        ' lblGitHubLink1
         ' 
-        Label6.AutoSize = True
-        Label6.Location = New Point(216, 462)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(98, 28)
-        Label6.TabIndex = 7
-        Label6.Text = "For Task 2"
+        lblGitHubLink1.AutoSize = True
+        lblGitHubLink1.Location = New Point(216, 462)
+        lblGitHubLink1.Name = "lblGitHubLink1"
+        lblGitHubLink1.Size = New Size(98, 28)
+        lblGitHubLink1.TabIndex = 7
+        lblGitHubLink1.Text = "For Task 2"
         ' 
         ' txtName
         ' 
@@ -183,14 +183,14 @@ Partial Class viewSubmissionsForm
         txtElapsedTime.Text = "00:01:19"
         txtElapsedTime.TextAlign = HorizontalAlignment.Center
         ' 
-        ' Label8
+        ' lblElapsedTime1
         ' 
-        Label8.AutoSize = True
-        Label8.Location = New Point(246, 557)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(51, 28)
-        Label8.TabIndex = 14
-        Label8.Text = "time"
+        lblElapsedTime1.AutoSize = True
+        lblElapsedTime1.Location = New Point(246, 557)
+        lblElapsedTime1.Name = "lblElapsedTime1"
+        lblElapsedTime1.Size = New Size(51, 28)
+        lblElapsedTime1.TabIndex = 14
+        lblElapsedTime1.Text = "time"
         ' 
         ' PictureBox1
         ' 
@@ -205,9 +205,9 @@ Partial Class viewSubmissionsForm
         ' btnDelete
         ' 
         btnDelete.BackColor = Color.LightCoral
-        btnDelete.Location = New Point(644, 636)
+        btnDelete.Location = New Point(640, 643)
         btnDelete.Name = "btnDelete"
-        btnDelete.Size = New Size(271, 45)
+        btnDelete.Size = New Size(275, 38)
         btnDelete.TabIndex = 16
         btnDelete.Text = "Delete(CTRL+D)"
         btnDelete.UseVisualStyleBackColor = False
@@ -230,21 +230,21 @@ Partial Class viewSubmissionsForm
         Controls.Add(btnEdit)
         Controls.Add(btnDelete)
         Controls.Add(PictureBox1)
-        Controls.Add(Label8)
+        Controls.Add(lblElapsedTime1)
         Controls.Add(txtElapsedTime)
         Controls.Add(lblElapsedTime)
         Controls.Add(txtGithubLink)
         Controls.Add(txtPhoneNumber)
         Controls.Add(txtEmail)
         Controls.Add(txtName)
-        Controls.Add(Label6)
+        Controls.Add(lblGitHubLink1)
         Controls.Add(btnNext)
         Controls.Add(btnPrevious)
         Controls.Add(lblGitHubLink)
         Controls.Add(lblPhoneNumber)
         Controls.Add(lblEmail)
-        Controls.Add(Label2)
-        Controls.Add(Label1)
+        Controls.Add(lblName)
+        Controls.Add(lblTitle)
         Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         FormBorderStyle = FormBorderStyle.None
         Margin = New Padding(4)
@@ -255,21 +255,21 @@ Partial Class viewSubmissionsForm
         PerformLayout()
     End Sub
 
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblTitle As Label
+    Friend WithEvents lblName As Label
     Friend WithEvents lblEmail As Label
     Friend WithEvents lblPhoneNumber As Label
     Friend WithEvents lblGitHubLink As Label
     Friend WithEvents btnPrevious As Button
     Friend WithEvents btnNext As Button
-    Friend WithEvents Label6 As Label
+    Friend WithEvents lblGitHubLink1 As Label
     Friend WithEvents txtName As TextBox
     Friend WithEvents txtEmail As TextBox
     Friend WithEvents txtPhoneNumber As TextBox
     Friend WithEvents txtGithubLink As TextBox
     Friend WithEvents lblElapsedTime As Label
     Friend WithEvents txtElapsedTime As TextBox
-    Friend WithEvents Label8 As Label
+    Friend WithEvents lblElapsedTime1 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents btnDelete As Button
     Friend WithEvents btnEdit As Button

@@ -24,10 +24,10 @@ Partial Class EditSubmissionForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditSubmissionForm))
         PictureBox1 = New PictureBox()
-        Label1 = New Label()
-        Email = New Label()
-        Phone = New Label()
-        Label4 = New Label()
+        lblName = New Label()
+        lblEmail = New Label()
+        lblPhoneNumber = New Label()
+        lblGitHubLink = New Label()
         txtName = New TextBox()
         txtEmail = New TextBox()
         txtPhoneNumber = New TextBox()
@@ -41,58 +41,58 @@ Partial Class EditSubmissionForm
         ' 
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
         PictureBox1.Location = New Point(1081, 1)
-        PictureBox1.Margin = New Padding(4, 4, 4, 4)
+        PictureBox1.Margin = New Padding(4)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(65, 58)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 0
         PictureBox1.TabStop = False
         ' 
-        ' Label1
+        ' lblName
         ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(182, 109)
-        Label1.Margin = New Padding(4, 0, 4, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(59, 25)
-        Label1.TabIndex = 1
-        Label1.Text = "Name"
+        lblName.AutoSize = True
+        lblName.Location = New Point(182, 109)
+        lblName.Margin = New Padding(4, 0, 4, 0)
+        lblName.Name = "lblName"
+        lblName.Size = New Size(59, 25)
+        lblName.TabIndex = 1
+        lblName.Text = "Name"
         ' 
-        ' Email
+        ' lblEmail
         ' 
-        Email.AutoSize = True
-        Email.Location = New Point(182, 214)
-        Email.Margin = New Padding(4, 0, 4, 0)
-        Email.Name = "Email"
-        Email.Size = New Size(54, 25)
-        Email.TabIndex = 2
-        Email.Text = "Email"
+        lblEmail.AutoSize = True
+        lblEmail.Location = New Point(182, 214)
+        lblEmail.Margin = New Padding(4, 0, 4, 0)
+        lblEmail.Name = "lblEmail"
+        lblEmail.Size = New Size(54, 25)
+        lblEmail.TabIndex = 2
+        lblEmail.Text = "Email"
         ' 
-        ' Phone
+        ' lblPhoneNumber
         ' 
-        Phone.AutoSize = True
-        Phone.Location = New Point(182, 298)
-        Phone.Margin = New Padding(4, 0, 4, 0)
-        Phone.Name = "Phone"
-        Phone.RightToLeft = RightToLeft.No
-        Phone.Size = New Size(62, 25)
-        Phone.TabIndex = 3
-        Phone.Text = "Phone"
+        lblPhoneNumber.AutoSize = True
+        lblPhoneNumber.Location = New Point(182, 298)
+        lblPhoneNumber.Margin = New Padding(4, 0, 4, 0)
+        lblPhoneNumber.Name = "lblPhoneNumber"
+        lblPhoneNumber.RightToLeft = RightToLeft.No
+        lblPhoneNumber.Size = New Size(62, 25)
+        lblPhoneNumber.TabIndex = 3
+        lblPhoneNumber.Text = "Phone"
         ' 
-        ' Label4
+        ' lblGitHubLink
         ' 
-        Label4.AutoSize = True
-        Label4.Location = New Point(182, 384)
-        Label4.Margin = New Padding(4, 0, 4, 0)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(99, 25)
-        Label4.TabIndex = 4
-        Label4.Text = "GitHubLink"
+        lblGitHubLink.AutoSize = True
+        lblGitHubLink.Location = New Point(182, 384)
+        lblGitHubLink.Margin = New Padding(4, 0, 4, 0)
+        lblGitHubLink.Name = "lblGitHubLink"
+        lblGitHubLink.Size = New Size(99, 25)
+        lblGitHubLink.TabIndex = 4
+        lblGitHubLink.Text = "GitHubLink"
         ' 
         ' txtName
         ' 
         txtName.Location = New Point(434, 106)
-        txtName.Margin = New Padding(4, 4, 4, 4)
+        txtName.Margin = New Padding(4)
         txtName.Name = "txtName"
         txtName.Size = New Size(296, 31)
         txtName.TabIndex = 5
@@ -100,7 +100,7 @@ Partial Class EditSubmissionForm
         ' txtEmail
         ' 
         txtEmail.Location = New Point(434, 208)
-        txtEmail.Margin = New Padding(4, 4, 4, 4)
+        txtEmail.Margin = New Padding(4)
         txtEmail.Name = "txtEmail"
         txtEmail.Size = New Size(296, 31)
         txtEmail.TabIndex = 6
@@ -108,7 +108,7 @@ Partial Class EditSubmissionForm
         ' txtPhoneNumber
         ' 
         txtPhoneNumber.Location = New Point(434, 292)
-        txtPhoneNumber.Margin = New Padding(4, 4, 4, 4)
+        txtPhoneNumber.Margin = New Padding(4)
         txtPhoneNumber.Name = "txtPhoneNumber"
         txtPhoneNumber.Size = New Size(296, 31)
         txtPhoneNumber.TabIndex = 7
@@ -116,7 +116,7 @@ Partial Class EditSubmissionForm
         ' txtGitHubLink
         ' 
         txtGitHubLink.Location = New Point(434, 378)
-        txtGitHubLink.Margin = New Padding(4, 4, 4, 4)
+        txtGitHubLink.Margin = New Padding(4)
         txtGitHubLink.Name = "txtGitHubLink"
         txtGitHubLink.Size = New Size(296, 31)
         txtGitHubLink.TabIndex = 8
@@ -124,9 +124,9 @@ Partial Class EditSubmissionForm
         ' btnUpdate
         ' 
         btnUpdate.BackColor = Color.AntiqueWhite
-        btnUpdate.Location = New Point(182, 483)
+        btnUpdate.Location = New Point(129, 534)
         btnUpdate.Name = "btnUpdate"
-        btnUpdate.Size = New Size(302, 32)
+        btnUpdate.Size = New Size(313, 54)
         btnUpdate.TabIndex = 9
         btnUpdate.Text = "Update"
         btnUpdate.UseVisualStyleBackColor = False
@@ -134,9 +134,9 @@ Partial Class EditSubmissionForm
         ' btnCancel
         ' 
         btnCancel.BackColor = Color.DarkGray
-        btnCancel.Location = New Point(569, 483)
+        btnCancel.Location = New Point(563, 533)
         btnCancel.Name = "btnCancel"
-        btnCancel.Size = New Size(277, 32)
+        btnCancel.Size = New Size(354, 55)
         btnCancel.TabIndex = 10
         btnCancel.Text = "Cancel"
         btnCancel.UseVisualStyleBackColor = False
@@ -152,14 +152,14 @@ Partial Class EditSubmissionForm
         Controls.Add(txtPhoneNumber)
         Controls.Add(txtEmail)
         Controls.Add(txtName)
-        Controls.Add(Label4)
-        Controls.Add(Phone)
-        Controls.Add(Email)
-        Controls.Add(Label1)
+        Controls.Add(lblGitHubLink)
+        Controls.Add(lblPhoneNumber)
+        Controls.Add(lblEmail)
+        Controls.Add(lblName)
         Controls.Add(PictureBox1)
         Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         FormBorderStyle = FormBorderStyle.None
-        Margin = New Padding(4, 4, 4, 4)
+        Margin = New Padding(4)
         Name = "EditSubmissionForm"
         Text = "EditSubmissionForm"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
@@ -168,10 +168,10 @@ Partial Class EditSubmissionForm
     End Sub
 
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Email As Label
-    Friend WithEvents Phone As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents lblName As Label
+    Friend WithEvents lblEmail As Label
+    Friend WithEvents lblPhoneNumber As Label
+    Friend WithEvents lblGitHubLink As Label
     Friend WithEvents txtName As TextBox
     Friend WithEvents txtEmail As TextBox
     Friend WithEvents txtPhoneNumber As TextBox

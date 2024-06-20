@@ -44,7 +44,7 @@ Partial Class Form1
         ' btnCreateSubmissions
         ' 
         btnCreateSubmissions.BackColor = Color.LightSkyBlue
-        btnCreateSubmissions.Location = New Point(167, 287)
+        btnCreateSubmissions.Location = New Point(167, 350)
         btnCreateSubmissions.Name = "btnCreateSubmissions"
         btnCreateSubmissions.Size = New Size(345, 52)
         btnCreateSubmissions.TabIndex = 1
@@ -63,9 +63,9 @@ Partial Class Form1
         ' PictureBox1
         ' 
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(704, 0)
+        PictureBox1.Location = New Point(607, 2)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(59, 51)
+        PictureBox1.Size = New Size(70, 59)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 3
         PictureBox1.TabStop = False
@@ -74,7 +74,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(762, 447)
+        ClientSize = New Size(679, 512)
         Controls.Add(PictureBox1)
         Controls.Add(Label1)
         Controls.Add(btnCreateSubmissions)

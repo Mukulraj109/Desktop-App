@@ -1,16 +1,56 @@
-﻿Imports System.Net.Http
+﻿Imports System.Drawing.Text
+Imports System.Net.Http
 Imports System.Text
 Imports System.Threading.Tasks
 
 Public Class CreateSubmissionsForm
 
     Private stopwatch As New Stopwatch()
+    Private customFont As Font
 
     Private Sub CreateSubmissionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Initialize timer in Load event
         timer1 = New Timer()
         AddHandler timer1.Tick, AddressOf Timer1_Tick
         timer1.Interval = 1000 ' 1 second
+        ApplyCustomFont()
+    End Sub
+
+    Private Sub ApplyCustomFont()
+        ' Custom font
+        Dim pfc As New PrivateFontCollection()
+        Try
+            pfc.AddFontFile("C:\Users\Mukul raj\source\repos\windowapp\font\font.ttf") ' Adjust path as necessary
+            If pfc.Families.Length > 0 Then
+                customFont = New Font(pfc.Families(0), 12, FontStyle.Regular) ' Use FontStyle.Regular for normal font weight
+
+                ' Apply custom font to all TextBox controls
+                txtName.Font = customFont
+                txtEmail.Font = customFont
+                txtPhoneNumber.Font = customFont
+                txtGitHubLink.Font = customFont
+
+                ' Apply custom font to all Label controls
+                lblTitle.Font = customFont
+                lblName.Font = customFont
+                lblEmail.Font = customFont
+                lblPhoneNumber.Font = customFont
+                lblGitHubLink.Font = customFont
+                lblGitHubLink1.Font = customFont
+
+
+                ' Apply custom font to all Button controls
+                btnStartStop.Font = customFont
+                btnSubmit.Font = customFont
+            Else
+                MessageBox.Show("Failed to load custom font.")
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"Error loading custom font: {ex.Message}")
+        End Try
+
+        ' Apply custom font to timer label
+        lblTimer.Font = New Font(customFont.FontFamily, 24, FontStyle.Bold) ' Example size and style for timer
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs)
@@ -27,7 +67,7 @@ Public Class CreateSubmissionsForm
         End If
     End Sub
 
-    Private  Async Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+    Private Async Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         ' Create a new submission entry
         Dim submission As New SubmissionEntry(
             txtName.Text,
@@ -91,5 +131,9 @@ Public Class CreateSubmissionsForm
         txtGitHubLink.Clear()
         stopwatch.Reset()
         lblTimer.Text = "00:00:00"
+    End Sub
+
+    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles lblPhoneNumber.Click
+
     End Sub
 End Class
