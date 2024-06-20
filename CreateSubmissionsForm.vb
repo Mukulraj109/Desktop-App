@@ -11,12 +11,16 @@ Public Class CreateSubmissionsForm
     Private stopwatch As New Stopwatch()
     Private customFont As Font
 
-    Private Sub CreateSubmissionsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Initialize timer in Load event
-        timer1 = New Timer()
-        AddHandler timer1.Tick, AddressOf Timer1_Tick
-        timer1.Interval = 1000 ' 1 second
+    Public Sub New()
+        ' Form constructor
+        InitializeComponent()
+        ' Apply custom font and initialize timer
         ApplyCustomFont()
+        InitializeTimer()
+        ' Set form properties
+        DoubleBuffered = True ' Reduce flickering
+        SetStyle(ControlStyles.ResizeRedraw, True) ' Redraw on resize
+        UpdateStyles() ' Update form styles
     End Sub
 
     Private Sub ApplyCustomFont()
@@ -52,6 +56,13 @@ Public Class CreateSubmissionsForm
 
         ' Apply custom font to timer label
         lblTimer.Font = New Font(customFont.FontFamily, 24, FontStyle.Bold) ' Example size and style for timer
+    End Sub
+
+    Private Sub InitializeTimer()
+        ' Initialize timer
+        timer1 = New Timer()
+        AddHandler timer1.Tick, AddressOf Timer1_Tick
+        timer1.Interval = 1000 ' 1 second
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs)
@@ -111,9 +122,23 @@ Public Class CreateSubmissionsForm
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
         ' Create a gradient brush for the form background
-        Using brush As New LinearGradientBrush(Me.ClientRectangle, Color.LightBlue, Color.White, LinearGradientMode.Vertical)
+        Using brush As New LinearGradientBrush(ClientRectangle, Color.LightBlue, Color.White, LinearGradientMode.Vertical)
             ' Paint the form background with the gradient brush
-            e.Graphics.FillRectangle(brush, Me.ClientRectangle)
+            e.Graphics.FillRectangle(brush, ClientRectangle)
+        End Using
+
+        ' Create rounded corners
+        Using path As New GraphicsPath()
+            Dim rect As New Rectangle(0, 0, Width, Height)
+            Dim radius As Integer = 20 ' Adjust the radius as per your preference
+            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90)
+            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90)
+            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90)
+            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90)
+            path.CloseFigure()
+
+            ' Set the region with the rounded rectangle path
+            Region = New Region(path)
         End Using
 
         ' Call base implementation

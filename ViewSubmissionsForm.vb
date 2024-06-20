@@ -6,13 +6,23 @@ Imports System.Net.Http
 Imports System.Windows.Forms
 
 Public Class ViewSubmissionsForm
+    Inherits Form ' Make sure the class inherits from Form
+
     Private currentSubmissionIndex As Integer = 0
     Private customFont As Font
 
-    Private Sub ViewSubmissionsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public Sub New()
+        ' Form constructor
+        InitializeComponent()
         ' Load initial submission
         LoadSubmission(currentSubmissionIndex)
+        ' Apply custom font
         ApplyCustomFont()
+        ' Set form properties
+        FormBorderStyle = FormBorderStyle.None ' No border style
+        DoubleBuffered = True ' Reduce flickering
+        SetStyle(ControlStyles.ResizeRedraw, True) ' Redraw on resize
+        UpdateStyles() ' Update form styles
     End Sub
 
     Private Sub ApplyCustomFont()
@@ -23,28 +33,12 @@ Public Class ViewSubmissionsForm
             If pfc.Families.Length > 0 Then
                 customFont = New Font(pfc.Families(0), 12, FontStyle.Regular) ' Use FontStyle.Regular to ensure no bold
 
-                ' Apply custom font to all TextBox controls
-                txtName.Font = customFont
-                txtEmail.Font = customFont
-                txtPhoneNumber.Font = customFont
-                txtGithubLink.Font = customFont
-                txtElapsedTime.Font = customFont
-
-                ' Apply custom font to all Label controls
-                lblTitle.Font = customFont
-                lblName.Font = customFont
-                lblEmail.Font = customFont
-                lblPhoneNumber.Font = customFont
-                lblGitHubLink.Font = customFont
-                lblGitHubLink1.Font = customFont
-                lblElapsedTime.Font = customFont
-                lblElapsedTime1.Font = customFont
-
-                ' Apply custom font to all Button controls
-                btnPrevious.Font = customFont
-                btnNext.Font = customFont
-                btnEdit.Font = customFont
-                btnDelete.Font = customFont
+                ' Apply custom font to all controls
+                For Each control As Control In Controls
+                    If TypeOf control Is TextBox OrElse TypeOf control Is Label OrElse TypeOf control Is Button Then
+                        control.Font = customFont
+                    End If
+                Next
             Else
                 MessageBox.Show("Failed to load custom font.")
             End If
@@ -244,9 +238,23 @@ Public Class ViewSubmissionsForm
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
         ' Create a gradient brush for the form background
-        Using brush As New LinearGradientBrush(Me.ClientRectangle, Color.LightBlue, Color.White, LinearGradientMode.Vertical)
+        Using brush As New LinearGradientBrush(ClientRectangle, Color.LightBlue, Color.White, LinearGradientMode.Vertical)
             ' Paint the form background with the gradient brush
-            e.Graphics.FillRectangle(brush, Me.ClientRectangle)
+            e.Graphics.FillRectangle(brush, ClientRectangle)
+        End Using
+
+        ' Create rounded corners
+        Using path As New GraphicsPath()
+            Dim rect As New Rectangle(0, 0, Width, Height)
+            Dim radius As Integer = 20 ' Adjust the radius as per your preference
+            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90)
+            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90)
+            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90)
+            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90)
+            path.CloseFigure()
+
+            ' Set the region with the rounded rectangle path
+            Region = New Region(path)
         End Using
 
         ' Call base implementation

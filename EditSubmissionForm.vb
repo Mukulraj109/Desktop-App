@@ -1,17 +1,15 @@
 ﻿Imports Newtonsoft.Json
 Imports System.Net.Http
 Imports System.Drawing
+Imports System.Drawing.Drawing2D
 Imports System.Drawing.Text
-
-
+Imports System.Windows.Forms
 
 Public Class EditSubmissionForm
 
     Private submission As SubmissionEntry ' Assuming SubmissionEntry is your data model
     Private currentSubmissionIndex As Integer
-    Private Sub EditSubmissionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ApplyStyles()
-    End Sub
+
     Public Sub New(ByVal submission As SubmissionEntry, ByVal index As Integer)
         InitializeComponent()
 
@@ -19,6 +17,10 @@ Public Class EditSubmissionForm
         Me.submission = submission
         Me.currentSubmissionIndex = index
         LoadSubmissionData()
+        ApplyStyles()
+
+        ' Ensure the form does not exceed the screen size
+        Me.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size
     End Sub
 
     Private Sub LoadSubmissionData()
@@ -63,8 +65,10 @@ Public Class EditSubmissionForm
                 txtPhoneNumber.ForeColor = customForeColor
                 txtGitHubLink.ForeColor = customForeColor
 
-                ' Set form background color
+                ' Set form background color and rounded corners
                 Me.BackColor = Color.LightBlue
+                Me.FormBorderStyle = FormBorderStyle.None ' No border
+                Me.Region = GetRoundedRegion(Me.ClientRectangle, 20) ' 20 is the radius of rounded corners
             Else
                 MessageBox.Show("Failed to load custom font.")
             End If
@@ -73,6 +77,15 @@ Public Class EditSubmissionForm
         End Try
     End Sub
 
+    Private Function GetRoundedRegion(rect As Rectangle, radius As Integer) As Region
+        Dim path As New GraphicsPath()
+        path.AddArc(rect.X, rect.Y, radius * 2, radius * 2, 180, 90)
+        path.AddArc(rect.Right - radius * 2, rect.Y, radius * 2, radius * 2, 270, 90)
+        path.AddArc(rect.Right - radius * 2, rect.Bottom - radius * 2, radius * 2, radius * 2, 0, 90)
+        path.AddArc(rect.X, rect.Bottom - radius * 2, radius * 2, radius * 2, 90, 90)
+        path.CloseFigure()
+        Return New Region(path)
+    End Function
 
     Private Async Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         ' Validate user input
@@ -132,6 +145,5 @@ Public Class EditSubmissionForm
         ' Additional validation logic can be added here
         Return True
     End Function
-
 
 End Class
