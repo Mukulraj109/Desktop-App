@@ -6,7 +6,7 @@ Imports System.Net.Http
 Imports System.Windows.Forms
 
 Public Class ViewSubmissionsForm
-    Inherits Form ' Make sure the class inherits from Form
+    Inherits Form
 
     Private currentSubmissionIndex As Integer = 0
     Private customFont As Font
@@ -23,6 +23,12 @@ Public Class ViewSubmissionsForm
         DoubleBuffered = True ' Reduce flickering
         SetStyle(ControlStyles.ResizeRedraw, True) ' Redraw on resize
         UpdateStyles() ' Update form styles
+
+        ' Add hover effects to buttons
+        AddHoverEffects(btnPrevious)
+        AddHoverEffects(btnNext)
+        AddHoverEffects(btnDelete)
+        AddHoverEffects(btnEdit)
     End Sub
 
     Private Sub ApplyCustomFont()
@@ -45,6 +51,26 @@ Public Class ViewSubmissionsForm
         Catch ex As Exception
             MessageBox.Show($"Error loading custom font: {ex.Message}")
         End Try
+    End Sub
+
+    Private Sub AddHoverEffects(button As Button)
+        ' Add MouseEnter and MouseLeave event handlers
+        AddHandler button.MouseEnter, AddressOf Button_MouseEnter
+        AddHandler button.MouseLeave, AddressOf Button_MouseLeave
+    End Sub
+
+    Private Sub Button_MouseEnter(sender As Object, e As EventArgs)
+        ' Adjust button appearance on mouse enter
+        Dim button As Button = DirectCast(sender, Button)
+        button.Font = New Font(customFont.FontFamily, customFont.Size + 1, FontStyle.Bold)
+
+    End Sub
+
+    Private Sub Button_MouseLeave(sender As Object, e As EventArgs)
+        ' Restore button appearance on mouse leave
+        Dim button As Button = DirectCast(sender, Button)
+        button.Font = customFont
+        ' Restore original color on mouse leave
     End Sub
 
     Private Function GetSubmissionCount() As Integer
@@ -261,4 +287,7 @@ Public Class ViewSubmissionsForm
         MyBase.OnPaint(e)
     End Sub
 
+    Private Sub viewSubmissionsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Additional load event code if necessary
+    End Sub
 End Class

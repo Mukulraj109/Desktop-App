@@ -4,6 +4,7 @@ Imports System.Drawing.Text
 Imports System.Windows.Forms
 
 Public Class Form1
+    Private customFont As Font
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Apply custom font and other initializations
@@ -23,18 +24,42 @@ Public Class Form1
         Try
             pfc.AddFontFile("C:\Users\Mukul raj\source\repos\windowapp\font\font.ttf") ' Adjust path as necessary
             If pfc.Families.Length > 0 Then
-                Dim customFont As New Font(pfc.Families(0), 12, FontStyle.Regular) ' Use FontStyle.Regular to ensure no bold
+                customFont = New Font(pfc.Families(0), 12, FontStyle.Regular) ' Use FontStyle.Regular to ensure no bold
 
                 ' Apply custom font to form and controls
                 Me.Font = customFont
                 btnViewSubmissions.Font = customFont
                 btnCreateSubmissions.Font = customFont
+
+                ' Apply hover effects to buttons
+                AddHoverEffects(btnViewSubmissions)
+                AddHoverEffects(btnCreateSubmissions)
             Else
                 MessageBox.Show("Failed to load custom font.")
             End If
         Catch ex As Exception
             MessageBox.Show($"Error loading custom font: {ex.Message}")
         End Try
+    End Sub
+
+    Private Sub AddHoverEffects(button As Button)
+        ' Add MouseEnter and MouseLeave event handlers
+        AddHandler button.MouseEnter, AddressOf Button_MouseEnter
+        AddHandler button.MouseLeave, AddressOf Button_MouseLeave
+    End Sub
+
+    Private Sub Button_MouseEnter(sender As Object, e As EventArgs)
+        ' Adjust button appearance on mouse enter
+        Dim button As Button = DirectCast(sender, Button)
+        button.Font = New Font(customFont.FontFamily, customFont.Size + 1, FontStyle.Bold)
+
+    End Sub
+
+    Private Sub Button_MouseLeave(sender As Object, e As EventArgs)
+        ' Restore button appearance on mouse leave
+        Dim button As Button = DirectCast(sender, Button)
+        button.Font = customFont
+
     End Sub
 
     Private Sub SetRoundedForm()

@@ -93,9 +93,9 @@ Partial Class viewSubmissionsForm
         ' btnPrevious
         ' 
         btnPrevious.BackColor = Color.Khaki
-        btnPrevious.Location = New Point(30, 643)
+        btnPrevious.Location = New Point(30, 636)
         btnPrevious.Name = "btnPrevious"
-        btnPrevious.Size = New Size(222, 38)
+        btnPrevious.Size = New Size(234, 45)
         btnPrevious.TabIndex = 5
         btnPrevious.Text = "&Previous (CTRL + P)"
         btnPrevious.UseVisualStyleBackColor = False
@@ -103,9 +103,9 @@ Partial Class viewSubmissionsForm
         ' btnNext
         ' 
         btnNext.BackColor = Color.SkyBlue
-        btnNext.Location = New Point(337, 643)
+        btnNext.Location = New Point(337, 636)
         btnNext.Name = "btnNext"
-        btnNext.Size = New Size(268, 38)
+        btnNext.Size = New Size(276, 45)
         btnNext.TabIndex = 6
         btnNext.Text = "&Next (CTRL + N)"
         btnNext.UseVisualStyleBackColor = False
@@ -205,9 +205,9 @@ Partial Class viewSubmissionsForm
         ' btnDelete
         ' 
         btnDelete.BackColor = Color.LightCoral
-        btnDelete.Location = New Point(640, 643)
+        btnDelete.Location = New Point(640, 636)
         btnDelete.Name = "btnDelete"
-        btnDelete.Size = New Size(275, 38)
+        btnDelete.Size = New Size(289, 45)
         btnDelete.TabIndex = 16
         btnDelete.Text = "Delete(CTRL+D)"
         btnDelete.UseVisualStyleBackColor = False

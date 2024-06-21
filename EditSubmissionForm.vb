@@ -145,5 +145,27 @@ Public Class EditSubmissionForm
         ' Additional validation logic can be added here
         Return True
     End Function
+    Private Sub btnUpdate_MouseEnter(sender As Object, e As EventArgs) Handles btnUpdate.MouseEnter
+        ' Adjust button appearance on mouse enter
+        btnUpdate.Font = New Font(btnUpdate.Font.FontFamily, btnUpdate.Font.Size + 1, FontStyle.Bold)
+    End Sub
 
+    Private Sub btnUpdate_MouseLeave(sender As Object, e As EventArgs) Handles btnUpdate.MouseLeave
+        ' Restore button appearance on mouse leave
+        btnUpdate.Font = New Font(btnUpdate.Font.FontFamily, btnUpdate.Font.Size - 1, FontStyle.Regular)
+    End Sub
+
+    Private Sub btnCancel_MouseEnter(sender As Object, e As EventArgs) Handles btnCancel.MouseEnter
+        ' Adjust button appearance on mouse enter
+        btnCancel.Font = New Font(btnCancel.Font.FontFamily, btnCancel.Font.Size + 1, FontStyle.Bold)
+    End Sub
+
+    Private Sub btnCancel_MouseLeave(sender As Object, e As EventArgs) Handles btnCancel.MouseLeave
+        ' Restore button appearance on mouse leave
+        btnCancel.Font = New Font(btnCancel.Font.FontFamily, btnCancel.Font.Size - 1, FontStyle.Regular)
+    End Sub
+
+    Private Sub EditSubmissionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

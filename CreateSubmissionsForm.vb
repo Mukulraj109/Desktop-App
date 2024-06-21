@@ -21,6 +21,8 @@ Public Class CreateSubmissionsForm
         DoubleBuffered = True ' Reduce flickering
         SetStyle(ControlStyles.ResizeRedraw, True) ' Redraw on resize
         UpdateStyles() ' Update form styles
+        AddHoverEffects(btnStartStop)
+        AddHoverEffects(btnSubmit)
     End Sub
 
     Private Sub ApplyCustomFont()
@@ -58,6 +60,56 @@ Public Class CreateSubmissionsForm
         lblTimer.Font = New Font(customFont.FontFamily, 24, FontStyle.Bold) ' Example size and style for timer
     End Sub
 
+    Private Sub AddHoverEffects(button As Button)
+        ' Add MouseEnter and MouseLeave event handlers
+        AddHandler button.MouseEnter, AddressOf Button_MouseEnter
+        AddHandler button.MouseLeave, AddressOf Button_MouseLeave
+    End Sub
+
+    Private Sub Button_MouseEnter(sender As Object, e As EventArgs)
+        ' Adjust button appearance on mouse enter
+        Dim button As Button = DirectCast(sender, Button)
+        button.Font = New Font(customFont.FontFamily, customFont.Size + 1, FontStyle.Bold)
+
+    End Sub
+
+    Private Sub Button_MouseLeave(sender As Object, e As EventArgs)
+        ' Restore button appearance on mouse leave
+        Dim button As Button = DirectCast(sender, Button)
+        button.Font = customFont
+
+    End Sub
+
+    Private Sub btnStartStop_MouseEnter(sender As Object, e As EventArgs) Handles btnStartStop.MouseEnter
+        ' Adjust button appearance on mouse enter (simulate hover effect)
+        btnStartStop.Font = New Font(customFont.FontFamily, customFont.Size + 1, FontStyle.Bold)
+
+    End Sub
+
+    Private Sub btnStartStop_MouseLeave(sender As Object, e As EventArgs) Handles btnStartStop.MouseLeave
+        ' Restore button appearance on mouse leave
+        btnStartStop.Font = customFont
+    End Sub
+
+    Private Function ValidateInput() As Boolean
+        ' Validate email format
+        If Not txtEmail.Text.Contains("@") OrElse Not txtEmail.Text.Contains(".") Then
+            MessageBox.Show("Please enter a valid email address.")
+            Return False
+        End If
+
+        ' Validate other required fields (e.g., not empty)
+        If String.IsNullOrWhiteSpace(txtName.Text) Then
+            MessageBox.Show("Please enter a name.")
+            Return False
+        End If
+
+        ' Additional validation rules can be added here (e.g., phone number format)
+
+        Return True
+    End Function
+
+
     Private Sub InitializeTimer()
         ' Initialize timer
         timer1 = New Timer()
@@ -80,14 +132,19 @@ Public Class CreateSubmissionsForm
     End Sub
 
     Private Async Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        ' Validate user input
+        If Not ValidateInput() Then
+            Return
+        End If
+
         ' Create a new submission entry
         Dim submission As New SubmissionEntry(
-            txtName.Text,
-            txtEmail.Text,
-            txtPhoneNumber.Text,
-            txtGitHubLink.Text,
-            stopwatch.Elapsed
-        )
+        txtName.Text,
+        txtEmail.Text,
+        txtPhoneNumber.Text,
+        txtGitHubLink.Text,
+        stopwatch.Elapsed
+    )
 
         ' Prepare JSON payload
         Dim jsonPayload As String = $"{{ ""name"": ""{submission.Name}"", ""email"": ""{submission.Email}"", ""phone"": ""{submission.Phone}"", ""github_link"": ""{submission.GitHub_Link}"", ""stopwatch_time"": ""{stopwatch.Elapsed.ToString("hh\:mm\:ss")}"", ""createdAt"": ""{DateTime.Now.ToString("yyyy-MM-ddTHH\:mm\:ssZ")}"", ""updatedAt"": ""{DateTime.Now.ToString("yyyy-MM-ddTHH\:mm\:ssZ")}"", ""deletedAt"": ""null"" }}"
@@ -119,6 +176,7 @@ Public Class CreateSubmissionsForm
         ' Reset fields and stopwatch
         ResetForm()
     End Sub
+
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
         ' Create a gradient brush for the form background
@@ -170,4 +228,7 @@ Public Class CreateSubmissionsForm
         lblTimer.Text = "00:00:00"
     End Sub
 
+    Private Sub createSubmissionsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
