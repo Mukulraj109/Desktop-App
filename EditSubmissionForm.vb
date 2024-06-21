@@ -88,9 +88,14 @@ Public Class EditSubmissionForm
     End Function
 
     Private Async Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        ' Validate user input
+        ' Validate user input for name, email, and phone number
         If Not ValidateInput() Then
             MessageBox.Show("Please enter valid data.")
+            Return
+        End If
+
+        ' Validate phone number
+        If Not ValidatePhoneNumber() Then
             Return
         End If
 
@@ -102,12 +107,12 @@ Public Class EditSubmissionForm
 
         ' Create a new anonymous object to ensure all properties are included in the payload
         Dim updatePayload As New With {
-            .name = submission.Name,
-            .email = submission.Email,
-            .phone = submission.Phone,
-            .github_link = submission.GitHub_Link,
-            .stopwatch_time = submission.Stopwatch_Time
-        }
+        .name = submission.Name,
+        .email = submission.Email,
+        .phone = submission.Phone,
+        .github_link = submission.GitHub_Link,
+        .stopwatch_time = submission.Stopwatch_Time
+    }
 
         ' Perform update logic here (e.g., send update request to backend)
         Dim apiUrl As String = $"http://localhost:3000/edit?index={currentSubmissionIndex}" ' Replace with your actual endpoint
@@ -131,6 +136,7 @@ Public Class EditSubmissionForm
         End Using
     End Sub
 
+
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Close() ' Simply close the form if cancel button is clicked
     End Sub
@@ -145,6 +151,28 @@ Public Class EditSubmissionForm
         ' Additional validation logic can be added here
         Return True
     End Function
+
+    Private Function ValidatePhoneNumber() As Boolean
+        ' Trim the phone number text to remove leading and trailing whitespace
+        Dim phoneNumber As String = txtPhoneNumber.Text.Trim()
+
+        ' Check if the phone number is empty
+        If String.IsNullOrWhiteSpace(phoneNumber) Then
+            MessageBox.Show("Please enter a phone number.")
+            Return False
+        End If
+
+        ' Example: Validate phone number format using a regular expression
+        ' Modify the regex pattern based on your specific requirements
+        ' Example: 10 digits or format like 123-456-7890
+        If Not System.Text.RegularExpressions.Regex.IsMatch(phoneNumber, "^(\d{10}|\d{3}-\d{3}-\d{4})$") Then
+            MessageBox.Show("Please enter a valid phone number (e.g., 1234567890 or 123-456-7890).")
+            Return False
+        End If
+
+        Return True
+    End Function
+
     Private Sub btnUpdate_MouseEnter(sender As Object, e As EventArgs) Handles btnUpdate.MouseEnter
         ' Adjust button appearance on mouse enter
         btnUpdate.Font = New Font(btnUpdate.Font.FontFamily, btnUpdate.Font.Size + 1, FontStyle.Bold)

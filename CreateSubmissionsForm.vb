@@ -109,6 +109,25 @@ Public Class CreateSubmissionsForm
         Return True
     End Function
 
+    Private Function ValidatePhoneNumber() As Boolean
+        Dim phoneNumber As String = txtPhoneNumber.Text.Trim()
+
+        ' Check if the phone number is empty
+        If String.IsNullOrWhiteSpace(phoneNumber) Then
+            MessageBox.Show("Please enter a phone number.")
+            Return False
+        End If
+
+        ' Example: Validate format (you can adjust this based on your requirements)
+        ' For example, a valid phone number might be 10 digits or include dashes
+        If Not System.Text.RegularExpressions.Regex.IsMatch(phoneNumber, "^(\d{10}|\d{3}-\d{3}-\d{4})$") Then
+            MessageBox.Show("Please enter a valid phone number (e.g., 1234567890 or 123-456-7890).")
+            Return False
+        End If
+
+        Return True
+    End Function
+
 
     Private Sub InitializeTimer()
         ' Initialize timer
@@ -132,19 +151,24 @@ Public Class CreateSubmissionsForm
     End Sub
 
     Private Async Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        ' Validate user input
+        ' Validate user input for name, email, and phone number
         If Not ValidateInput() Then
+            Return
+        End If
+
+        ' Validate phone number
+        If Not ValidatePhoneNumber() Then
             Return
         End If
 
         ' Create a new submission entry
         Dim submission As New SubmissionEntry(
-        txtName.Text,
-        txtEmail.Text,
-        txtPhoneNumber.Text,
-        txtGitHubLink.Text,
-        stopwatch.Elapsed
-    )
+            txtName.Text,
+            txtEmail.Text,
+            txtPhoneNumber.Text,
+            txtGitHubLink.Text,
+            stopwatch.Elapsed
+        )
 
         ' Prepare JSON payload
         Dim jsonPayload As String = $"{{ ""name"": ""{submission.Name}"", ""email"": ""{submission.Email}"", ""phone"": ""{submission.Phone}"", ""github_link"": ""{submission.GitHub_Link}"", ""stopwatch_time"": ""{stopwatch.Elapsed.ToString("hh\:mm\:ss")}"", ""createdAt"": ""{DateTime.Now.ToString("yyyy-MM-ddTHH\:mm\:ssZ")}"", ""updatedAt"": ""{DateTime.Now.ToString("yyyy-MM-ddTHH\:mm\:ssZ")}"", ""deletedAt"": ""null"" }}"
@@ -176,7 +200,6 @@ Public Class CreateSubmissionsForm
         ' Reset fields and stopwatch
         ResetForm()
     End Sub
-
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
         ' Create a gradient brush for the form background
